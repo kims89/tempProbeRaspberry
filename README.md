@@ -1,0 +1,1 @@
+# Temperaturmåler i Raspberry Pi
