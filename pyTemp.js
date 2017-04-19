@@ -40,4 +40,4 @@ db.once('open', function() {
     console.log(data);
   })
 });
-db.disconnect();
+mongoose.disconnect();
