@@ -39,5 +39,4 @@ db.once('open', function() {
     if (err) return console.error(err);
     console.log(data);
   })
-  mongoose.connection.close();
 });
