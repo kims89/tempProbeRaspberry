@@ -45,12 +45,9 @@ cron.schedule('0 0 * * * *', function() {
   });
   (1) + '%'
 );
-}
-});
 
 Temperature.find(function(err, data) {
-if (err) return console.error(err);
-console.log(data);
-})
+  if (err) return console.error(err);
+  console.log(data);
 });
 });
