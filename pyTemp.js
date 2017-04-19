@@ -40,3 +40,4 @@ db.once('open', function() {
     console.log(data);
   })
 });
+mongoose.connection.close();
