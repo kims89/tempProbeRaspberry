@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/temp1');
-mongoose.connection.db.dropDatabase(function(err) {
-  console.log('db dropped');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+
 });
