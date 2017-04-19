@@ -1,5 +1,6 @@
 var sensor = require('node-dht-sensor');
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/temp1');
 
 var db = mongoose.connection;
@@ -34,9 +35,9 @@ db.once('open', function() {
     }
   });
 
-
   Temperature.find(function(err, data) {
     if (err) return console.error(err);
     console.log(data);
   })
+  mongoose.connection.close();
 });
