@@ -27,6 +27,7 @@ db.once('open', function() {
 
       tempNow.save(function(err, data) {
         if (err) return console.error(err);
+        mongoose.disconnect();
       });
 
       console.log('temp: ' + temperature.toFixed(1) + '°C, ' +
@@ -40,4 +41,3 @@ db.once('open', function() {
     console.log(data);
   })
 });
-mongoose.disconnect();
