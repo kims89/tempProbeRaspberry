@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var TempDBB = require('./temp.js');
 
 var uri = 'mongodb://localhost/TempLogDB';
 var connection = mongoose.createConnection(uri);
