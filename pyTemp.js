@@ -2,12 +2,12 @@ var sensor = require('node-dht-sensor');
 var mongoose = require('mongoose');
 var TempDB = require('./temp.js');
 var cron = require('node-cron');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/TemperaturLogDB');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
 cron.schedule('0 * * * * *', function() {
+  mongoose.Promise = global.Promise;
+  mongoose.connect('mongodb://localhost/TemperaturLogDB');
+
+  var db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function() {
     sensor.read(11, 4, function(err, temperature, humidity) {
       console.log(Date() + " - Fullfort");
