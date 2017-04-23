@@ -1,27 +1,25 @@
-var sensor = require('node-dht-sensor');
 var mongoose = require('mongoose');
-var cron = require('node-cron');
-cron.schedule('0 * * * *', function() {
-  mongoose.Promise = global.Promise;
-  mongoose.connect('mongodb://localhost/TemperaturLogVen');
 
-  var db = mongoose.connection;
+    //connection to Mongodb instance running on=======
+    //local machine or anywhere=========================
+    var uri = 'mongodb://localhost/TemperaturLogVen';
+    var connection = mongoose.createConnection(uri);
 
-  db.on('error', console.error.bind(console, 'connection error:'));
-  db.once('open', function() {
 
-    var tempSchema = mongoose.Schema({
+    //Define Schema==================================
+    var Schema = mongoose.Schema;
+    var BlogPostSchema = new Schema({
       date: Date,
       humidity: Number,
       temp: Number
-
     });
-    var Temperature = mongoose.model('temperature', tempSchema);
 
+   var BlogPostModel = connection.model('temperature', BlogPostSchema);
 
-    Temperature.find(function(err, data) {
-      if (err) return console.error(err);
-      console.log(data);
-    });
-  });
-});
+    //mongoose get all docs. I think here answers your question directly
+      BlogPostModel.find(function (err, results) {
+        if (err) return console.error(err);
+
+        //invoke callback with your mongoose returned result
+        console.log(results);
+      });
