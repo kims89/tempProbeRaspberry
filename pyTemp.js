@@ -1,7 +1,7 @@
 var sensor = require('node-dht-sensor');
 var mongoose = require('mongoose');
 var cron = require('node-cron');
-cron.schedule('0 * * * *', function() {
+cron.schedule('0 * * * * *', function() {
   mongoose.Promise = global.Promise;
   mongoose.connect('mongodb://localhost/temp');
 
