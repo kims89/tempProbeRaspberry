@@ -30,8 +30,16 @@ cron.schedule('0 * * * *', function() {
           if (err) return console.error(err);
           mongoose.disconnect();
         });
+
+        console.log('temp: ' + temperature.toFixed(1) + '°C, ' +
+          'humidity: ' + humidity.toFixed(1) + '%'
+        );
       }
     });
 
+    Temperature.find(function(err, data) {
+      if (err) return console.error(err);
+      console.log(data);
+    });
   });
 });
