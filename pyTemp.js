@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var TempDB = require('./temp.js');
 var cron = require('node-cron');
 cron.schedule('0 * * * * *', function() {
+  var dato = Date();
+  dato.setHours(today.getHours() + 2);
   mongoose.Promise = global.Promise;
   mongoose.connect('mongodb://localhost/TemperaturLogDB');
 
@@ -13,7 +15,7 @@ cron.schedule('0 * * * * *', function() {
       console.log(Date() + " - Fullfort");
       if (!err) {
         var tempNow = new TempDB({
-          date: new Date(),
+          date: dato,
           humidity: humidity.toFixed(1),
           temp: temperature.toFixed(1)
         });
