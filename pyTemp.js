@@ -4,7 +4,7 @@ var TempDB = require('./temp.js');
 var cron = require('node-cron');
 cron.schedule('0 * * * * *', function() {
   var dato = Date();
-  dato.setHours(today.getHours() + 2);
+  dato.setHours(dato.getHours() + 2);
   mongoose.Promise = global.Promise;
   mongoose.connect('mongodb://localhost/TemperaturLogDB');
 
