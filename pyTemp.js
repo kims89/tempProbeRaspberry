@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var cron = require('node-cron');
 
   mongoose.Promise = global.Promise;
-  mongoose.connect('mongodb://localhost/temp');
+  mongoose.connect('mongodb://localhost/TemperaturLogVen');
 
   var db = mongoose.connection;
 
@@ -20,7 +20,7 @@ var cron = require('node-cron');
 
 cron.schedule('0 * * * * *', function() {
     sensor.read(11, 4, function(err, temperature, humidity) {
-      console.log("Logg");
+      console.log(Date()+" - Fullfort");
       if (!err) {
         var tempNow = new Temperature({
           date: Date(),
