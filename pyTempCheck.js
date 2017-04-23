@@ -4,10 +4,18 @@ var TempDBB = require('./temp.js');
 var uri = 'mongodb://localhost/TempLogDB';
 var connection = mongoose.createConnection(uri);
 
-var temp = TempDBB();
+
+var Schema = mongoose.Schema;
+var BlogPostSchema = new Schema({
+  date: Date,
+  humidity: Number,
+  temp: Number
+});
+
+var TempModel = connection.model('temperature', BlogPostSchema);
 
 //mongoose get all docs. I think here answers your question directly
-temp.find(function(err, results) {
+TempModel.find(function(err, results) {
   if (err) return console.error(err);
 
   //invoke callback with your mongoose returned result
