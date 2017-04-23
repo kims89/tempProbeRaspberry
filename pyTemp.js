@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var TempDB = require('./temp.js');
 var cron = require('node-cron');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/TemperaturLogVen');
+mongoose.connect('mongodb://localhost/TemperaturLogDB');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
