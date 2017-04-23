@@ -20,6 +20,7 @@ var cron = require('node-cron');
 
 cron.schedule('0 * * * * *', function() {
     sensor.read(11, 4, function(err, temperature, humidity) {
+      console.log("Logg");
       if (!err) {
         var tempNow = new Temperature({
           date: Date(),
