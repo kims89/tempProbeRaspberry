@@ -6,7 +6,7 @@ cron.schedule('0 * * * * *', function() {
   var dato = new Date();
   dato.setHours(dato.getHours() + 2);
   mongoose.Promise = global.Promise;
-  mongoose.connect('mongodb://localhost/TemperaturLogDB');
+  mongoose.connect('mongodb://localhost/TempLogDB');
 
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));

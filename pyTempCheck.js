@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 //connection to Mongodb instance running on=======
 //local machine or anywhere=========================
-var uri = 'mongodb://localhost/TemperaturLogDB';
+var uri = 'mongodb://localhost/TempLogDB';
 var connection = mongoose.createConnection(uri);
 
 
