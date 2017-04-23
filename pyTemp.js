@@ -1,7 +1,7 @@
 var sensor = require('node-dht-sensor');
 var mongoose = require('mongoose');
 var cron = require('node-cron');
-
+function RunTemp() {
   mongoose.Promise = global.Promise;
   mongoose.connect('mongodb://localhost/TemperaturLogVen');
 
@@ -18,7 +18,6 @@ var cron = require('node-cron');
     });
     var Temperature = mongoose.model('temperature', tempSchema);
 
-cron.schedule('0 * * * * *', function() {
     sensor.read(11, 4, function(err, temperature, humidity) {
       console.log(Date()+" - Fullfort");
       if (!err) {
@@ -34,5 +33,11 @@ cron.schedule('0 * * * * *', function() {
         });
       }
     });
-});
+
   });
+
+};
+
+cron.schedule('0 * * * * *', function() {
+  RunTemp();
+});
