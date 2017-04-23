@@ -10,7 +10,7 @@ cron.schedule('0 * * * * *', function() {
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function() {
     sensor.read(11, 4, function(err, temperature, humidity) {
-      console.log(dato + " - Fullfort");
+      console.log(Date() + " - Fullfort");
       if (!err) {
         var tempNow = new TempDB({
           date: new Date(),
