@@ -14,7 +14,7 @@ cron.schedule('0 * * * * *', function() {
       console.log(dato + " - Fullfort");
       if (!err) {
         var tempNow = new TempDB({
-          date: dato,
+          date: dato.now,
           humidity: humidity.toFixed(1),
           temp: temperature.toFixed(1)
         });
