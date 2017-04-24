@@ -5,7 +5,7 @@ var path = require('path');
 var fs = require('fs');
 var jsondata;
 
-var uri = 'mongodb://localhost/TempLogDB';
+var uri = 'mongodb://localhost/TempLogHours';
 mongoose.Promise = global.Promise;
 var connection = mongoose.createConnection(uri);
 
