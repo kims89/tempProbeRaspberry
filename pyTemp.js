@@ -2,11 +2,11 @@ var sensor = require('node-dht-sensor');
 var mongoose = require('mongoose');
 var TempDB = require('./temp.js');
 var cron = require('node-cron');
-cron.schedule('8 * * * *', function() {
+cron.schedule('13 * * * *', function() {
   var dato = new Date();
   dato.setHours(dato.getHours() + 2);
   mongoose.Promise = global.Promise;
-  db = mongoose.createConnection('mongodb://localhost/TempLogHours');
+  db = mongoose.createConnection('mongodb://localhost/temploghours');
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function() {
     sensor.read(11, 4, function(err, temperature, humidity) {
@@ -19,6 +19,7 @@ cron.schedule('8 * * * *', function() {
         });
 
         tempNow.save(function(err, data) {
+          console.log("Lagret");
           if (err) return console.error(err);
           mongoose.disconnect();
         });
