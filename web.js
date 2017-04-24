@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
 app.get('/tempDB', function(req, res) {
   TempModel.find(function(err, results) {
     if (err) return console.error(err);
-    res.end(results);
+    res.end(JSON.stringify(results));
     console.log(results);
   });
 });
