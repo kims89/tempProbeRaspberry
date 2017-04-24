@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var uri = 'mongodb://localhost/TempLogDB';
+var uri = 'mongodb://localhost/TempLogHours';
 mongoose.Promise = global.Promise;
 var connection = mongoose.createConnection(uri);
 
