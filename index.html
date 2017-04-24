@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/js/easy-autocomplete.css">
+<script src="/js/jquery.easy-autocomplete.js"></script>
+</head>
+<script>
+
+
+function searchJson(data) {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var table = document.getElementById("myTable");
+
+          var tableHeaderRowCount = 0;
+          var rowCount = table.rows.length;
+          for (var i = tableHeaderRowCount; i < rowCount; i++) {
+              table.deleteRow(tableHeaderRowCount);
+          }
+          var jsonData = JSON.parse(this.responseText);
+          var row = table.insertRow(0);
+          var counter = jsonData;
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          var cell5 = row.insertCell(4);
+          cell1.innerHTML = counter.albumId;
+          cell2.innerHTML = counter.id;
+          cell3.innerHTML = counter.title;
+          cell4.innerHTML = counter.url;
+          cell5.innerHTML = counter.thumbnailUrl;
+
+      }
+  };
+  xmlhttp.open("GET", "/jsonfind/"+data, true);
+  xmlhttp.send();
+
+}
+
+function searchNameJson(data) {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var table = document.getElementById("myTable");
+
+          var tableHeaderRowCount = 0;
+          var rowCount = table.rows.length;
+          for (var i = tableHeaderRowCount; i < rowCount; i++) {
+              table.deleteRow(tableHeaderRowCount);
+          }
+          var jsonData = JSON.parse(this.responseText);
+          for (var i = 0; i < jsonData.length; i++) {
+            var row = table.insertRow(0);
+            var counter = jsonData[i];
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            cell1.innerHTML = counter.albumId;
+            cell2.innerHTML = counter.id;
+            cell3.innerHTML = counter.title;
+            cell4.innerHTML = counter.url;
+            cell5.innerHTML = counter.thumbnailUrl;
+          }
+
+      }
+  };
+  xmlhttp.open("GET", "/jsonname/"+data, true);
+  xmlhttp.send();
+
+}
+
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var table = document.getElementById("myTable");
+        var jsonData = JSON.parse(this.responseText);
+        for (var i = 0; i < jsonData.length; i++) {
+            var counter = jsonData[i];
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            cell1.innerHTML = counter.albumId;
+            cell2.innerHTML = counter.id;
+            cell3.innerHTML = counter.title;
+            cell4.innerHTML = counter.url;
+            cell5.innerHTML = counter.thumbnailUrl;
+        }
+
+    }
+};
+xmlhttp.open("GET", "/json", true);
+xmlhttp.send();
+
+
+</script>
+<body>
+
+
+</br>
+  <div class="container">
+<div class="row">
+<div class="col-md-4">
+      <input type="text" id="provider-json" class="form-control" placeholder="Search for..." />
+</div>
+
+      <button class="btn btn-default" type="button" onclick="sokEnter()">Go!</button>
+</div>
+
+
+  <div class="table-responsive">
+  </br>
+            <table  class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#1</th>
+                  <th>Nr</th>
+                  <th>Tittel</th>
+                  <th>url</th>
+                  <th>thumbnail Url</th>
+                </tr>
+              </thead>
+              <tbody id="myTable">
+              </tbody>
+            </table>
+  </div>
+
+  </div><!-- /.container -->
+          <script>
+          function sokEnter() {
+              var x = document.getElementById("provider-json").value;
+              searchNameJson(x);
+          }
+
+          var options = {
+          	url: "/js/photos.json",
+
+          	getValue: "title",
+
+          	list: {
+          		match: {
+          			enabled: true
+          		},
+              onClickEvent: function() {
+                var value = $("#provider-json").getSelectedItemData().id;
+                searchJson(value);
+              },
+              onChooseEvent: function() {
+                var value = $("#provider-json").getSelectedItemData().id;
+                searchJson(value);
+              }
+          	}
+          };
+
+          $("#provider-json").easyAutocomplete(options);
+
+          </script>
+</body>
+</html>
