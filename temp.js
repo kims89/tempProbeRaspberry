@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var tempSchema = mongoose.Schema({
+var tempSchema = new Schema({
   date: Date,
   humidity: Number,
   temp: Number
