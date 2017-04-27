@@ -19,9 +19,9 @@ cron.schedule('5 * * * *', function() {
         });
       }
     });
-    tempNow.save(function(err, data) {
+    tempNow.save(function(err) {
       console.log("Lagret");
-      if (err) return console.error(err);
+      if (err) return handleError(err);
       mongoose.disconnect();
     });
   });
