@@ -12,7 +12,7 @@ var BlogPostSchema = new Schema({
   temp: Number
 });
 
-var TempModel = connection.model('temperature', BlogPostSchema);
+var TempModel = connection.model('Temp', BlogPostSchema);
 
 //mongoose get all docs. I think here answers your question directly
 TempModel.find(function(err, results) {
