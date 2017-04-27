@@ -19,12 +19,12 @@ cron.schedule('35 * * * *', function() {
         humidity: humidity.toFixed(1),
         temp: temperature.toFixed(1)
       });
+      tempNow.save(function(err) {
+        console.log("Lagret");
+        if (err) return handleError(err);
+        mongoose.disconnect();
+      });
     }
-  });
-  tempNow.save(function(err) {
-    console.log("Lagret");
-    if (err) return handleError(err);
-    mongoose.disconnect();
   });
 
 });
