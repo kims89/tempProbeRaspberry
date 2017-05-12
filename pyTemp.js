@@ -20,6 +20,7 @@ sensor.read(11, 4, function(err, temperature, humidity) {
       temp: temperature.toFixed(1)
     });
     db.once('open', function() {
+      console.log("open");
       tempNow.save(function(err) {
         console.log("Lagret");
         if (err) return handleError(err);
