@@ -10,7 +10,6 @@ var dato = new Date();
 dato.setHours(dato.getHours() + 2);
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/templogh');
-db.on('error', console.error.bind(console, 'connection error:'));
 
 sensor.read(11, 4, function(err, temperature, humidity) {
   console.log(humidity.toFixed(1) + " temperatur");
@@ -23,10 +22,4 @@ sensor.read(11, 4, function(err, temperature, humidity) {
       temp: tempr
     }).save();
   }
-});
-
-
-db.once('open', function() {
-  console.log("open");
-
 });
