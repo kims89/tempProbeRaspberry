@@ -13,7 +13,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 
 sensor.read(11, 4, function(err, temperature, humidity) {
-  console.log(Date() + " - Fullfort");
+  console.log(humidity.toFixed(1) + " temperatur");
   if (!err) {
     var tempNow = new TempDB({
       date: dato,
