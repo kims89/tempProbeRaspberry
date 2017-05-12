@@ -9,7 +9,7 @@ var humir;
 var dato = new Date();
 dato.setHours(dato.getHours() + 2);
 mongoose.Promise = global.Promise;
-db = mongoose.createConnection('mongodb://localhost/templogh');
+mongoose.connect('mongodb://localhost/templogh');
 db.on('error', console.error.bind(console, 'connection error:'));
 
 sensor.read(11, 4, function(err, temperature, humidity) {
