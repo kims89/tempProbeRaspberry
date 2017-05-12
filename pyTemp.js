@@ -2,7 +2,7 @@ var sensor = require('node-dht-sensor');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var cron = require('node-cron');
-var TempDB = require('./temp.js');
+var TempDB = require('../temp.js');
 var tempr;
 var humir;
 
