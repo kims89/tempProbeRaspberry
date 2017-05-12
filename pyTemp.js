@@ -17,15 +17,16 @@ sensor.read(11, 4, function(err, temperature, humidity) {
   if (!err) {
     tempr = temperature.toFixed(1);
     humir = humidity.toFixed(1);
+    new TempDB({
+      date: dato,
+      humidity: humir,
+      temp: tempr
+    }).save();
   }
 });
 
 
 db.once('open', function() {
   console.log("open");
-  new TempDB({
-    date: dato,
-    humidity: humir,
-    temp: tempr
-  }).save();
+
 });
