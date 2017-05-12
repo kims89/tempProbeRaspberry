@@ -18,5 +18,4 @@ sensor.read(11, 4, function(err, temperature, humidity) {
       temp: temperature.toFixed(1)
     }).save();
   }
-  mongoose.connection.close();
 });
