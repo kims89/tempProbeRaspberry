@@ -4,22 +4,15 @@ var Schema = mongoose.Schema;
 var cron = require('node-cron');
 var TempDB = require('./temp.js');
 
-cron.schedule('50 * * * *', function() {
+cron.schedule('02 * * * *', function() {
   var dato = new Date();
   dato.setHours(dato.getHours() + 2);
   mongoose.Promise = global.Promise;
   db = mongoose.createConnection('mongodb://localhost/templogh');
   db.on('error', console.error.bind(console, 'connection error:'));
-  db.once('open', function() {});
+  db.once('open', function() {
 
-
-  var tempSchema = new Schema({
-    date: Date,
-    humidity: Number,
-    temp: Number
   });
-
-  var tempNow = mongoose.model('Temp', tempSchema);
 
   sensor.read(11, 4, function(err, temperature, humidity) {
     console.log(Date() + " - Fullfort");
