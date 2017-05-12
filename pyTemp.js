@@ -20,13 +20,12 @@ sensor.read(11, 4, function(err, temperature, humidity) {
   }
 });
 
-new TempDB({
-  date: dato,
-  humidity: humir,
-  temp: tempr
-}).save();
 
 db.once('open', function() {
   console.log("open");
-
+  new TempDB({
+    date: dato,
+    humidity: humir,
+    temp: tempr
+  }).save();
 });
