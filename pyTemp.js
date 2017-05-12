@@ -2,7 +2,7 @@ var sensor = require('node-dht-sensor');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var cron = require('node-cron');
-var TempDB = require('../temp.js');
+var TempDB = require('./temp.js');
 var tempr;
 var humir;
 
@@ -20,17 +20,13 @@ sensor.read(11, 4, function(err, temperature, humidity) {
   }
 });
 
-var tempNow = new TempDB({
+new TempDB({
   date: dato,
   humidity: humir,
   temp: tempr
-});
+}).save();
 
 db.once('open', function() {
   console.log("open");
-  tempNow.save(function(err) {
-    console.log("Lagret");
-    if (err) return handleError(err);
-    mongoose.disconnect();
-  });
+
 });
