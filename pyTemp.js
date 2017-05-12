@@ -2,18 +2,15 @@ var sensor = require('node-dht-sensor');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var cron = require('node-cron');
-<<<<<<< HEAD
+var TempDB = require('./temp.js');
+
 cron.schedule('50 * * * *', function() {
-=======
-cron.schedule('38 * * * *', function() {
->>>>>>> parent of 8c8f37f... sdsd
   var dato = new Date();
   dato.setHours(dato.getHours() + 2);
   mongoose.Promise = global.Promise;
   db = mongoose.createConnection('mongodb://localhost/templogh');
   db.on('error', console.error.bind(console, 'connection error:'));
-  db.once('open', function() {
-  });
+  db.once('open', function() {});
 
 
   var tempSchema = new Schema({
